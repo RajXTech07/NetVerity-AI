@@ -277,6 +277,8 @@ python train.py
 * Real-time speed test (actual network measurement)
 * WiFi ranking by location
 * User history dashboard
+* Map view wife (shows best cafe, Best speed wifi Hotels).
+* search bar where --- "Best hotels in kolkata with high speed WIFI" and It shows suggestions.
 * Mobile app version
 * Cloud deployment
 
