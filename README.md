@@ -301,7 +301,7 @@ python train.py
 ## 👨‍💻 Author
 
 **Raj Kumar**
-Aspiring Software Engineer | AI & ML Enthusiast
+Aspiring Ai-Engineer | AI & ML Enthusiast
 
 ---
 
