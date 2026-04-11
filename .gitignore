@@ -5,10 +5,6 @@ __pycache__/
 # Env
 .env
 
-# Model
-ai-model/model.pkl
-ai-model/columns.pkl
-
 # Node
 node_modules/
 
