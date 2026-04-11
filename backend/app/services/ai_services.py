@@ -7,8 +7,11 @@ import pandas as pd
 # Load the pre-trained model
 # =================================
 
-BASE_DIR = Path(__file__).resolve().parents[3]
+# .parents[2] points to the 'backend' folder
+BASE_DIR = Path(__file__).resolve().parents[2] 
 MODEL_DIR = BASE_DIR / "ai-model"
+
+# Load the files from the new location
 model = joblib.load(MODEL_DIR / "model.pkl")
 columns = joblib.load(MODEL_DIR / "columns.pkl")
 
@@ -49,30 +52,36 @@ def preprocess_input(data):
 
 def predict(data):
     preprocessed = preprocess_input(data)
+    
+    # Get the base score from your AI model (Assuming it returns a value 0-5)
     prediction = model.predict(preprocessed)[0]
+    ai_base_score = prediction * 20 # Convert to 0-100 scale
     
-    # Convert to the trust score(0-100)
-    trust_score = prediction * 20
-    trust_score = int((
-        data["download"]*0.4 +
-        data["upload"]*0.2 +
-        (100-data["ping"]) * 0.2 +
-        (100-data["jitter"]) * 0.1 +
-        (100-data["packet_loss"]*10) * 0.1 ))
+    # Optional: Combine AI score with real-time metrics for a 'Trust Score'
+    # We will give 60% weight to AI prediction and 40% to current hardware metrics
+    manual_metrics = int((
+        data["download"] * 0.4 + 
+        data["upload"] * 0.2 + 
+        (100 - data["ping"]) * 0.2 + 
+        (100 - data["jitter"]) * 0.1 + 
+        (100 - data["packet_loss"] * 10) * 0.1
+    ))
     
-    #Network-Status
+    # Final AI-Weighted Trust Score
+    trust_score = int((ai_base_score * 0.6) + (manual_metrics * 0.4))
+    
+    # Ensure score stays within 0-100
+    trust_score = max(0, min(100, trust_score))
+
+    # Network Status Logic
     if trust_score >= 80:
         status = "Excellent Network Speed"
-        
-    if trust_score >= 50:
+    elif trust_score >= 50:
         status = "Good Network Speed"
-        
-    #if trust_score >= 20:
-        #status = "Fair Network Speed"
-        
+    elif trust_score >= 20:
+        status = "Fair Network Speed"
     else:
         status = "Worst Network Speed"
         
     return trust_score, status
-    
  
