@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Speed Test - NetVerity AI</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<nav class="navbar glass-panel">
+  <div class="logo-header">NetVerity <span class="text-green" style="margin-left: 5px;">AI</span></div>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="#">About</a></li>
+    <li><a href="#">Contact</a></li>
+  </ul>
+  <button class="login-btn-icon glass-panel" onclick="toggleModal()">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+    Login
+  </button>
+</nav>
+
+<div class="test-container page-transition">
+
+  <button id="startBtn" class="btn-outline-glow" onclick="startTest()" style="margin-bottom: 20px;">Start Speed Test</button>
+
+  <div class="meter">
+    <div class="circle">
+      <div class="inner">
+        <h2 id="speed">0</h2>
+        <p style="color:var(--text-muted); font-size:14px; letter-spacing:1px;">Mbps</p>
+      </div>
+    </div>
+    <p id="phase">Idle</p>
+  </div>
+
+  <div class="stats-wrapper page-transition">
+    <div class="stat-box">
+      <p class="label">DOWNLOAD</p>
+      <p class="value"><span id="download">0</span> <span class="unit">Mbps</span></p>
+    </div>
+    <div class="stat-box">
+      <p class="label">UPLOAD</p>
+      <p class="value"><span id="upload">0</span> <span class="unit">Mbps</span></p>
+    </div>
+    <div class="stat-box">
+      <p class="label">PING</p>
+      <p class="value"><span id="ping">0</span> <span class="unit">ms</span></p>
+    </div>
+  </div>
+
+  <div class="result-box page-transition" id="result" style="display:none;">
+    <h2 id="score">Score: --</h2>
+    <div class="bar">
+      <div class="fill" id="barFill"></div>
+    </div>
+    <p id="status"></p>
+    <p id="recommendation"></p>
+  </div>
+
+  <div style="text-align: center; margin-top: 20px;">
+    <a href="test.html" id="testAgainBtn" style="text-decoration: none; display: none; opacity: 0; transition: opacity 0.8s ease;" onclick="sessionStorage.setItem('autoStart', 'true');">
+      <button class="btn-outline-glow">Test Again</button>
+    </a>
+  </div>
+
+</div>
+
+<div id="loginModal" class="modal">
+  <div class="modal-content glass-panel">
+    <span class="close" onclick="toggleModal()">&times;</span>
+    <h2>Sign In</h2>
+    <button class="auth-btn google">🌐 Connect with Google</button>
+    <button class="auth-btn email">✉️ Sign with Email</button>
+    <div class="modal-footer">
+      <p>Already have an account? <a href="#">Log in</a></p>
+    </div>
+  </div>
+</div>
+
+<script src="../js/wifi.js"></script>
+<script src="../js/api.js"></script>
+<script src="../js/app.js"></script>
+
+<script>
+  window.addEventListener('DOMContentLoaded', () => {
+    // Check if the autoStart flag is in sessionStorage (Set by index.html)
+    if (sessionStorage.getItem('autoStart') === 'true') {
+      
+      // Clear it immediately so it doesn't loop infinitely if they refresh
+      sessionStorage.removeItem('autoStart'); 
+      
+      // Hide the manual start button
+      const startBtn = document.getElementById('startBtn');
+      if (startBtn) startBtn.style.display = 'none'; 
+      
+      // Wait for the CSS page transition to finish, then start the test
+      setTimeout(() => {
+        if (typeof startTest === 'function') {
+          startTest();
+        }
+      }, 800);
+    }
+  });
+</script>
+
+</body>
+</html>
