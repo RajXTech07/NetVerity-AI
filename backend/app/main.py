@@ -14,6 +14,7 @@ app = FastAPI(title="NetVerity.Ai")
 # It will securely look for the key in Render's environment variables
 genai: Any = importlib.import_module("google.generativeai")
 api_key = os.environ.get("GEMINI_API_KEY")
+
 if not api_key:
     raise RuntimeError("GEMINI_API_KEY environment variable is not set")
 
@@ -45,7 +46,7 @@ def home():
 async def chat_with_gemini(request: ChatRequest):
     try:
         # Using 1.5-flash as it is the fastest for real-time web chat
-        model = genai.GenerativeModel('gemini-pro')
+        model = genai.GenerativeModel('gemini-1.5-flash')
         chat = model.start_chat(history=[])
         
         # We wrap the user's message in a prompt to give the AI context
