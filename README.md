@@ -115,12 +115,13 @@ netverity-ai/
 │   │   └── styles.css
 │   │
 │   ├── js/
-│      ├── app.js          # General logic
-│      ├── api.js          # API calls
-│      ├── wifi.js         # Speed test + score
-│      └── map.js          # Map logic---- For Future Enhancements
-│   
-│   
+│   │   ├── app.js          # General logic
+│   │   ├── api.js          # API calls
+│   │   ├── wifi.js         # Speed test + score
+│   │   └── map.js          # Map logic---- For Future Enhancements
+│   │
+│   └── index.html           # Dummy file ---- This file will automatically "push" the user to the real page.
+│
 │
 ├── backend/                 # FastAPI Server
 │   ├── app/
@@ -143,11 +144,13 @@ netverity-ai/
 │   │   └── utils/
 │   │       └── score_calculator.py
 │   │
+│   │
 │   ├── ai-model/                # ML Model (Optional for hackathon)
 │   │      ├── train.py
 │   │      ├── model.pkl
 │   │      ├── columns.pkl
 │   │      └── dataset.csv
+│   │
 │   ├── requirements.txt
 │   └── run.py
 │
