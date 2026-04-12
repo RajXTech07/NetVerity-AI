@@ -1,6 +1,8 @@
 # 🚀 NetVerity AI — WiFi Trust Analyzer
 
 > **AI-powered WiFi reliability checker for remote workers, students, and travelers**
+> 
+> **Must refresh the app 2 to 3 times to run perfectly**
 
 ---
 
@@ -83,7 +85,7 @@ Hotels, cafés, and coworking spaces often claim **“high-speed WiFi”**, but 
 ## 🏗️ Project Architecture
 
 ```
-Frontend (React / UI)
+Frontend (UI)
         ↓
 Speed Test UI
         ↓
@@ -118,7 +120,8 @@ netverity-ai/
 │   │   ├── wifi.js         # Speed test + score
 │   │   └── map.js          # Map logic---- For Future Enhancements
 │   │
-│   └── assets/             # Images/icons
+│   └── index.html           # Dummy file ---- This file will automatically "push" the user to the real page.
+│
 │
 ├── backend/                 # FastAPI Server
 │   ├── app/
@@ -141,13 +144,17 @@ netverity-ai/
 │   │   └── utils/
 │   │       └── score_calculator.py
 │   │
+│   │
+│   ├── ai-model/                # ML Model (Optional for hackathon)
+│   │      ├── train.py
+│   │      ├── model.pkl
+│   │      ├── columns.pkl
+│   │      └── dataset.csv
+│   │
 │   ├── requirements.txt
 │   └── run.py
 │
-├── ai-model/                # ML Model (Optional for hackathon)
-│   ├── train.py
-│   ├── model.pkl
-│   └── dataset.csv
+│
 │
 ├── docs/                   # Documentation
 │   ├── architecture.md
