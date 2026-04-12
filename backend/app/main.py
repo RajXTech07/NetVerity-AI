@@ -45,7 +45,7 @@ def home():
 async def chat_with_gemini(request: ChatRequest):
     try:
         # Using 1.5-flash as it is the fastest for real-time web chat
-        model = genai.GenerativeModel('gemini-1.5-flash')
+        model = genai.GenerativeModel('gemini-pro')
         chat = model.start_chat(history=[])
         
         # We wrap the user's message in a prompt to give the AI context
