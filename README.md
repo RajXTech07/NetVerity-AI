@@ -1,6 +1,7 @@
 # 🚀 NetVerity AI — WiFi Trust Analyzer
 
 > **AI-powered WiFi reliability checker for remote workers, students, and travelers**
+> 
 > **Must refresh the app 2 to 3 times to run perfectly**
 
 ---
