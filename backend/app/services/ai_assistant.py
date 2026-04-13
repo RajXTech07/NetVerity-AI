@@ -14,7 +14,7 @@ if not api_key:
 genai.configure(api_key=api_key)
 
 # Use stable fast model
-model = genai.GenerativeModel("gemini-3-flash")
+model = genai.GenerativeModel("gemini-1.5-pro")
 
 
 # ===============================
